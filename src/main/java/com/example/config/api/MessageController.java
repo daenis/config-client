@@ -15,8 +15,16 @@ public class MessageController {
     private final MessagePrinter messagePrinter;
 
     @PostMapping("/api/configuration-client/message-printing-example")
-    public ResponseEntity<?> printMessage(@RequestParam("message") String message) {
-        messagePrinter.printMessage(message);
+    public ResponseEntity<?> printMessage(@RequestParam("message") String theMessage) {
+        print(theMessage);
+        return anOkResponse();
+    }
+
+    private void print(String theMessage) {
+        messagePrinter.printMessage(theMessage);
+    }
+
+    private ResponseEntity<?> anOkResponse() {
         return ResponseEntity.ok().build();
     }
 }
